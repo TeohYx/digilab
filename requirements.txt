@@ -18,3 +18,4 @@ optax~=0.1.5
 transformers==4.29.2
 openai
 pydub
+pyaudio

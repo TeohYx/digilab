@@ -1,7 +1,9 @@
 class Sentences:
     sentence = ""
     cantonese = ""
+    popupmsg = ""
     isTranslated = False;
+    isRecorded = False;
 
     @classmethod
     def set_sentence(cls, new):
@@ -21,5 +23,17 @@ class Sentences:
         return cls.cantonese
 
     @classmethod
+    def set_popupmsg(cls, new):
+        cls.sentence = new
+
+    @classmethod
+    def get_popupmsg(cls):
+        return cls.sentence
+
+    @classmethod
     def is_translated(cls):
         return cls.isTranslated
+
+    @classmethod
+    def is_recorded(cls):
+        return cls.isRecorded        

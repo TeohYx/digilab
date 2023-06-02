@@ -19,7 +19,8 @@ from sentences import Sentences
 
 
 def translate():
-    params = load_params(sys.argv[1])
+    # params = load_params(sys.argv[1])
+    params = load_params("atomic-thunder-15-7.dat")
     params = jax.tree_map(np.asarray, params)
 
     tokenizer_en = BartTokenizer.from_pretrained('facebook/bart-base')
@@ -92,10 +93,21 @@ def index():
     return render_template('index.html')
 
 @app.route('/generate', methods=['POST'])
-def generate():
+def generate(input_data):
+    # sentence = request.form['filename']
+    Sentences.set_sentence(input_data)
+    print('first:', Sentences.get_sentence())
+
+    # command = "python generate.py atomic-thunder-15-7.dat --sentence '{}'".format(Sentences.get_sentence())
+    # subprocess.run(command, shell=True)
+    translate()
+
+    # return render_template('index.html', content=Sentences.get_cantonese())
+
+def generating():
     sentence = request.form['filename']
     Sentences.set_sentence(sentence)
-    print('first:', Sentences.get_sentence())
+    print('firsdst:', Sentences.get_sentence())
 
     # command = "python generate.py atomic-thunder-15-7.dat --sentence '{}'".format(Sentences.get_sentence())
     # subprocess.run(command, shell=True)

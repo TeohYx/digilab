@@ -6,6 +6,7 @@ fire
 wikiextractor
 blingfire
 regex
+flask
 wakong~=1.1.1
 datasets~=2.3.2
 torch~=2.0.0

@@ -15,7 +15,6 @@ from lib.en_kfw_nmt.fwd_transformer_encoder_part import fwd_transformer_encoder_
 
 # ass
 from flask import Flask, render_template, request, redirect, url_for
-import subprocess
 from sentences import Sentences
 
 

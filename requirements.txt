@@ -20,4 +20,4 @@ openai
 pyaudio
 pydub
 ffmpeg
-streamlit
+streamlit~=1.23.0

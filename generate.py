@@ -17,9 +17,11 @@ from lib.en_kfw_nmt.fwd_transformer_encoder_part import fwd_transformer_encoder_
 from flask import Flask, render_template, request, redirect, url_for
 from sentences import Sentences
 
+import os
 
 def translate():
     # params = load_params(sys.argv[1])
+    print("current directory is: " + os.getcwd())
     params = load_params("atomic-thunder-15-7.dat")
     params = jax.tree_map(np.asarray, params)
 

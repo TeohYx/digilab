@@ -3,6 +3,12 @@ import generate as g
 from sentences import Sentences
 import time
 import file
+import gdown
+
+# # link to model
+# url = 'https://drive.google.com/file/d/1fTUGsXiIz_egy4qM_R4Jujg2gCNFuZsX/view?usp=sharing'
+# output = 'atomic-thunder-15-7.dat'
+# gdown.download(url, output, quiet=False)
 
 st.set_page_config(page_title="Dialect Translator", page_icon=":tada:")
 

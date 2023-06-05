@@ -1,5 +1,6 @@
 import argparse
 from sentences import Sentences
+import streamlit as st
 
 import jax
 jax.config.update('jax_platforms', 'cpu')
@@ -18,11 +19,15 @@ from flask import Flask, render_template, request, redirect, url_for
 from sentences import Sentences
 
 import os
+    
+@st.cache_data
+def load_model():
+    return load_params("atomic-thunder-15-7.dat")
+     
 
 def translate():
     # params = load_params(sys.argv[1])
-    print("current directory is: " + os.getcwd())
-    params = load_params("atomic-thunder-15-7.dat")
+    params = load_model()
     params = jax.tree_map(np.asarray, params)
 
     tokenizer_en = BartTokenizer.from_pretrained('facebook/bart-base')

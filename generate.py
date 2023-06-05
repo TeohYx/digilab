@@ -52,19 +52,16 @@ def translate():
     sentences = [
         thing_to_generate,
     ]
-    print("problem1")
+
     inputs = tokenizer_en(sentences, return_tensors='jax', padding=True)
-    print("problem2")
     src = inputs.input_ids.astype(np.uint16)
-    print("problem3")
+
     mask_enc_1d = inputs.attention_mask.astype(np.bool_)
-    print("problem4")
     mask_enc = np.einsum('bi,bj->bij', mask_enc_1d, mask_enc_1d)[:, None]
-    print("problem5")
+
     encoder_last_hidden_output = fwd_transformer_encoder_part(params, src, mask_enc)
-    print("problem6")
     generate_ids = generator.generate(encoder_last_hidden_output, mask_enc_1d, num_beams=5, max_length=128)
-    print("problem7")
+
 
     decoded_sentences = tokenizer_yue.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
     print(decoded_sentences)
@@ -75,38 +72,11 @@ def translate():
         print(sentence)
     Sentences.set_cantonese(answer)
 
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/generate', methods=['POST'])
 def generate(input_data):
     # sentence = request.form['filename']
     Sentences.set_sentence(input_data)
     print('first:', Sentences.get_sentence())
 
-    # command = "python generate.py atomic-thunder-15-7.dat --sentence '{}'".format(Sentences.get_sentence())
-    # subprocess.run(command, shell=True)
     translate()
 
-    # return render_template('index.html', content=Sentences.get_cantonese())
 
-def generating():
-    sentence = request.form['filename']
-    Sentences.set_sentence(sentence)
-    print('firsdst:', Sentences.get_sentence())
-
-    # command = "python generate.py atomic-thunder-15-7.dat --sentence '{}'".format(Sentences.get_sentence())
-    # subprocess.run(command, shell=True)
-    translate()
-
-    return render_template('index.html', content=Sentences.get_cantonese())
-
-if __name__ == '__main__':
-    app.run()
-
-
-# ass

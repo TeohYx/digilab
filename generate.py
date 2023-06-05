@@ -52,13 +52,19 @@ def translate():
     sentences = [
         thing_to_generate,
     ]
+    print("problem1")
     inputs = tokenizer_en(sentences, return_tensors='jax', padding=True)
+    print("problem2")
     src = inputs.input_ids.astype(np.uint16)
+    print("problem3")
     mask_enc_1d = inputs.attention_mask.astype(np.bool_)
+    print("problem4")
     mask_enc = np.einsum('bi,bj->bij', mask_enc_1d, mask_enc_1d)[:, None]
-
+    print("problem5")
     encoder_last_hidden_output = fwd_transformer_encoder_part(params, src, mask_enc)
+    print("problem6")
     generate_ids = generator.generate(encoder_last_hidden_output, mask_enc_1d, num_beams=5, max_length=128)
+    print("problem7")
 
     decoded_sentences = tokenizer_yue.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
     print(decoded_sentences)

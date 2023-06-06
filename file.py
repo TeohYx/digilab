@@ -1,4 +1,4 @@
-import os
+import streamlit as st
 import time
 import openai
 import pyaudio
@@ -65,7 +65,7 @@ def record_audio():
 
     print("done")
     # openai.api_key = "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"
-    openai.api_key = "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"
+    openai.api_key = st.secrets.api_key.key
     audio_file = open("input.wav", "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file, language="en")
     print(transcript.text)

@@ -20,14 +20,6 @@ def download():
     prefix = 'https://drive.google.com/uc?/export=download&id='
     return gdown.download(prefix+file_id) 
     # file_url = 'https://drive.google.com/file/d/1fTUGsXiIz_egy4qM_R4Jujg2gCNFuZsX/view?usp=sharing'
- 
-@st.cache_data
-def load_model():
-    # return load_params("atomic-thunder-15-7.dat")
-    with open('model', 'rb') as f:
-        model = pickle.load(f)
-
-    return load_params(model)
 
 @st.cache_data     
 def load_en():

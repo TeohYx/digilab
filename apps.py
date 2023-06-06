@@ -51,7 +51,7 @@ def load_en():
 def load_yue():
     return BertTokenizer.from_pretrained('Ayaka/bart-base-cantonese')
 
-
+@st.cache_data
 def load_config():
     return BartConfig.from_pretrained('Ayaka/bart-base-cantonese')
     

@@ -1,24 +1,16 @@
 import streamlit as st
 from sentences import Sentences
 import file
-from sentences import Sentences
-import streamlit as st
+import gdown
+import gc
 
 import jax
-
 import jax.numpy as np
 from transformers import BartConfig, BartTokenizer, BertTokenizer
 
 from lib.Generator import Generator
 from lib.param_utils.load_params import load_params
 from lib.en_kfw_nmt.fwd_transformer_encoder_part import fwd_transformer_encoder_part
-
-from sentences import Sentences
-
-import pickle
-
-import gdown
-import gc
 
 
 @st.cache_data
@@ -28,10 +20,7 @@ def download():
     prefix = 'https://drive.google.com/uc?/export=download&id='
     return gdown.download(prefix+file_id) 
     # file_url = 'https://drive.google.com/file/d/1fTUGsXiIz_egy4qM_R4Jujg2gCNFuZsX/view?usp=sharing'
-
-
-
-    
+ 
 @st.cache_data
 def load_model():
     # return load_params("atomic-thunder-15-7.dat")
@@ -102,7 +91,7 @@ jax.config.update('jax_default_matmul_precision', jax.lax.Precision.HIGHEST)
 
 st.set_page_config(page_title="Dialect Translator", page_icon=":tada:")
 
-# download()
+download()
 # print(test)
 
 

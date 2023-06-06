@@ -1,9 +1,7 @@
 import streamlit as st
 import generate as g
 from sentences import Sentences
-import time
 import file
-import argparse
 from sentences import Sentences
 import streamlit as st
 
@@ -11,20 +9,20 @@ import jax
 
 import jax.numpy as np
 from transformers import BartConfig, BartTokenizer, BertTokenizer
-import sys
 
 from lib.Generator import Generator
 from lib.param_utils.load_params import load_params
 from lib.en_kfw_nmt.fwd_transformer_encoder_part import fwd_transformer_encoder_part
 
-# ass
-from flask import Flask, render_template, request, redirect, url_for
 from sentences import Sentences
 
-import os
 import pickle
 
 import gdown
+import gc
+
+print("Initial GC count at startup: ", gc.get_count())
+
 
 @st.cache_data
 def download():
@@ -53,7 +51,7 @@ def load_en():
 def load_yue():
     return BertTokenizer.from_pretrained('Ayaka/bart-base-cantonese')
 
-@st.cache_data
+
 def load_config():
     return BartConfig.from_pretrained('Ayaka/bart-base-cantonese')
     
@@ -100,13 +98,16 @@ def translate(input_data):
         print(sentence)
     Sentences.set_cantonese(answer)
 
+    gc.collect()
+    print("GC after cleanup: ", gc.get_count())
+
 jax.config.update('jax_platforms', 'cpu')
 jax.config.update('jax_default_matmul_precision', jax.lax.Precision.HIGHEST)
 
 st.set_page_config(page_title="Dialect Translator", page_icon=":tada:")
 
-test = download()
-print(test)
+download()
+# print(test)
 
 
 spinner = None

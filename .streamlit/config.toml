@@ -1,6 +1,3 @@
 [server]
-<<<<<<< HEAD
 headless = true
-=======
-headless = true
->>>>>>> 4fdd3fb9a9d4d6fffad5a57a2876b6f64580a75d
+

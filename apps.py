@@ -1,5 +1,4 @@
 import streamlit as st
-import generate as g
 from sentences import Sentences
 import file
 from sentences import Sentences
@@ -20,8 +19,6 @@ import pickle
 
 import gdown
 import gc
-
-print("Initial GC count at startup: ", gc.get_count())
 
 
 @st.cache_data
@@ -99,14 +96,13 @@ def translate(input_data):
     Sentences.set_cantonese(answer)
 
     gc.collect()
-    print("GC after cleanup: ", gc.get_count())
 
 jax.config.update('jax_platforms', 'cpu')
 jax.config.update('jax_default_matmul_precision', jax.lax.Precision.HIGHEST)
 
 st.set_page_config(page_title="Dialect Translator", page_icon=":tada:")
 
-download()
+# download()
 # print(test)
 
 

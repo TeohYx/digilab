@@ -64,7 +64,7 @@ def record_audio():
     # convert_wav_to_mp3(wav_path="input.wav", mp3_path="input.mp3")
 
     print("done")
-
+    # openai.api_key = "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"
     openai.api_key = "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"
     audio_file = open("input.wav", "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file, language="en")

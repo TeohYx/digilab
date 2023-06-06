@@ -1,6 +1,5 @@
 {
     "cSpell.words": [
-        "PRNG",
         "arange",
         "asarray",
         "astype",
@@ -15,12 +14,13 @@
         "jaxtyping",
         "ndarray",
         "optax",
+        "PRNG",
+        "pyaudio",
         "relu",
         "sharded",
         "stax",
         "tqdm",
         "trange",
-        "vocab",
         "vocab",
         "vstack",
         "wandb"

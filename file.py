@@ -65,7 +65,7 @@ def record_audio():
 
     print("done")
     # openai.api_key = "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"
-    openai.api_key = st.secrets.api_key.key
+    openai.api_key = "audio"
     audio_file = open("input.wav", "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file, language="en")
     print(transcript.text)

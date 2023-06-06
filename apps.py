@@ -37,20 +37,15 @@ def load_config():
 def translate(input_data):
     Sentences.set_sentence(input_data)
     print('first:', Sentences.get_sentence())
-    # params = load_params(sys.argv[1])
+
     params = load_params("atomic-thunder-15-7.dat")
-    print("test1")
     params = jax.tree_map(np.asarray, params)
-    print("test2")
+
     tokenizer_en = load_en()
-    print("test3")
     tokenizer_yue = load_yue() 
-    print("test4")
 
     config = load_config()
-    print("test5")
     generator = Generator({'embedding': params['decoder_embedding'], **params}, config=config)
-    print("test6")
     thing_to_generate = Sentences.get_sentence()
     print('second: ', thing_to_generate)
     sentences = [

@@ -22,10 +22,15 @@ from flask import Flask, render_template, request, redirect, url_for
 from sentences import Sentences
 
 import os
+import pickle
     
 @st.cache_data
 def load_model():
-    return load_params("atomic-thunder-15-7.dat")
+    # return load_params("atomic-thunder-15-7.dat")
+    with open('model', 'rb') as f:
+        model = pickle.load(f)
+
+    return load_params(model)
 
 @st.cache_data     
 def load_en():

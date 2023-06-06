@@ -11,17 +11,11 @@ CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
-SILENCE_THRESHOLD = 1000
+SILENCE_THRESHOLD = 1500
 SILENCE_FRAMES_THRESHOLD = 10  # Adjust the number of consecutive silent frames to detect silence
 RECORDING_DELAY = 2
 
 
-# def convert_wav_to_mp3(wav_path, mp3_path):
-#     # Load the WAV file
-#     audio = AudioSegment.from_wav(wav_path)
-
-#     # Export the audio as MP3
-#     audio.export(mp3_path, format="mp3")
 
 def record_audio():
     p = pyaudio.PyAudio()
@@ -71,7 +65,7 @@ def record_audio():
 
     print("done")
 
-    openai.api_key = "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"
+    openai.api_key = "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"
     audio_file = open("input.wav", "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file, language="en")
     print(transcript.text)

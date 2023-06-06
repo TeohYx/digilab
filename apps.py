@@ -31,7 +31,7 @@ def download():
     url = "https://drive.google.com/file/d/1fTUGsXiIz_egy4qM_R4Jujg2gCNFuZsX/view?usp=sharing"
     file_id = url.split('/')[-2]
     prefix = 'https://drive.google.com/uc?/export=download&id='
-    gdown.download(prefix+file_id) 
+    return gdown.download(prefix+file_id) 
     # file_url = 'https://drive.google.com/file/d/1fTUGsXiIz_egy4qM_R4Jujg2gCNFuZsX/view?usp=sharing'
 
 
@@ -63,14 +63,18 @@ def translate(input_data):
     print('first:', Sentences.get_sentence())
     # params = load_params(sys.argv[1])
     params = load_params("atomic-thunder-15-7.dat")
+    print("test1")
     params = jax.tree_map(np.asarray, params)
-
+    print("test2")
     tokenizer_en = load_en()
+    print("test3")
     tokenizer_yue = load_yue() 
+    print("test4")
 
     config = load_config()
+    print("test5")
     generator = Generator({'embedding': params['decoder_embedding'], **params}, config=config)
-
+    print("test6")
     thing_to_generate = Sentences.get_sentence()
     print('second: ', thing_to_generate)
     sentences = [
@@ -101,7 +105,8 @@ jax.config.update('jax_default_matmul_precision', jax.lax.Precision.HIGHEST)
 
 st.set_page_config(page_title="Dialect Translator", page_icon=":tada:")
 
-download()
+test = download()
+print(test)
 
 
 spinner = None
